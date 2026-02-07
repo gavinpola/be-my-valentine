@@ -1,0 +1,631 @@
+/* ==========================================
+   BE MY VALENTINE - RIDDLE WEBSITE STYLES
+   ========================================== */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --candy-pink: #ff4d6d;
+    --candy-light: #ff8fab;
+    --candy-dark: #c9184a;
+    --rose: #ff758f;
+    --blush: #fff0f3;
+    --cream: #fff9f5;
+    --gold: #ffd700;
+    --red: #e63946;
+    --white: #ffffff;
+    --text: #4a2030;
+    --text-light: #8a5070;
+    --font-hand: 'Caveat', cursive;
+    --font-clean: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-clean);
+    color: var(--text);
+    background: var(--blush);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Floating Hearts Background ===== */
+.hearts-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+    user-select: none;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-10vh) rotate(360deg) scale(1); opacity: 0; }
+}
+
+/* ===== Confetti ===== */
+.confetti-container {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -10px;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg) scale(0.3); opacity: 0; }
+}
+
+/* ===== Screens ===== */
+.screen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+}
+
+.screen-content {
+    text-align: center;
+    padding: 32px 24px;
+    max-width: 460px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== Intro Screen ===== */
+.intro-heart {
+    font-size: 4rem;
+    color: var(--candy-pink);
+    animation: heartBeat 1.4s ease-in-out infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+    60% { transform: scale(1); }
+}
+
+.intro-title {
+    font-family: var(--font-hand);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    color: var(--candy-dark);
+    margin-bottom: 16px;
+    animation: fadeSlideUp 0.8s ease-out 0.2s both;
+}
+
+.intro-text {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 8px;
+    animation: fadeSlideUp 0.8s ease-out 0.4s both;
+}
+
+.intro-sub {
+    font-family: var(--font-hand);
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-bottom: 32px;
+    animation: fadeSlideUp 0.8s ease-out 0.5s both;
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Buttons ===== */
+.btn-primary {
+    font-family: var(--font-hand);
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--candy-pink), var(--candy-dark));
+    color: var(--white);
+    border: none;
+    padding: 14px 44px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(201, 24, 74, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeSlideUp 0.8s ease-out 0.6s both;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 32px rgba(201, 24, 74, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0) scale(0.97);
+}
+
+.btn-submit {
+    font-family: var(--font-hand);
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, var(--candy-pink), var(--candy-dark));
+    color: var(--white);
+    border: none;
+    padding: 10px 28px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(201, 24, 74, 0.25);
+}
+
+.btn-submit:hover {
+    transform: scale(1.05);
+}
+
+.btn-clear {
+    font-family: var(--font-clean);
+    font-size: 0.9rem;
+    background: none;
+    color: var(--text-light);
+    border: 1px solid rgba(138, 80, 112, 0.3);
+    padding: 6px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.2s ease;
+}
+
+.btn-clear:hover {
+    background: rgba(138, 80, 112, 0.08);
+}
+
+/* ===== Progress Dots ===== */
+.progress-dots {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(201, 24, 74, 0.15);
+    transition: all 0.4s ease;
+}
+
+.dot.filled {
+    background: var(--candy-pink);
+    box-shadow: 0 0 8px rgba(255, 77, 109, 0.4);
+}
+
+.dot.current {
+    background: var(--candy-pink);
+    animation: dotPulse 1s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+}
+
+/* ===== Riddle Common ===== */
+.riddle-number {
+    font-family: var(--font-clean);
+    font-size: 0.85rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.riddle-title {
+    font-family: var(--font-hand);
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    color: var(--candy-dark);
+    margin-bottom: 12px;
+}
+
+.riddle-prompt {
+    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.riddle-hint {
+    font-family: var(--font-clean);
+    font-size: 0.9rem;
+    color: var(--red);
+    min-height: 24px;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+}
+
+/* ===== Riddle 1: Code Input ===== */
+.lock-icon {
+    font-size: 3rem;
+    margin-bottom: 8px;
+    transition: all 0.5s ease;
+}
+
+.lock-icon.unlocked {
+    transform: scale(1.3) rotate(-15deg);
+    opacity: 0;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.riddle-input {
+    font-family: var(--font-clean);
+    font-size: 1.2rem;
+    padding: 12px 20px;
+    border: 2px solid var(--candy-light);
+    border-radius: 16px;
+    outline: none;
+    text-align: center;
+    width: 200px;
+    transition: border-color 0.3s ease;
+    background: var(--white);
+    color: var(--text);
+}
+
+.riddle-input:focus {
+    border-color: var(--candy-pink);
+    box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.15);
+}
+
+.riddle-input.shake {
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+}
+
+.riddle-input.correct {
+    border-color: #22c55e;
+    background: #f0fdf4;
+}
+
+/* ===== Riddle 2: Letter Tiles ===== */
+.tiles-container {
+    margin-bottom: 8px;
+}
+
+.tiles-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.letter-tile {
+    width: 44px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--candy-light), var(--candy-pink));
+    color: var(--white);
+    font-family: var(--font-hand);
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 12px rgba(255, 77, 109, 0.25);
+    user-select: none;
+}
+
+.letter-tile:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 6px 20px rgba(255, 77, 109, 0.35);
+}
+
+.letter-tile:active {
+    transform: scale(0.95);
+}
+
+.letter-tile.used {
+    opacity: 0.25;
+    pointer-events: none;
+    transform: scale(0.9);
+}
+
+.answer-row {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.answer-slot {
+    width: 42px;
+    height: 50px;
+    border: 2px dashed var(--candy-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-hand);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--candy-dark);
+    background: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+}
+
+.answer-slot.filled {
+    border-style: solid;
+    border-color: var(--candy-pink);
+    background: var(--white);
+    animation: slotPop 0.3s ease;
+}
+
+@keyframes slotPop {
+    0% { transform: scale(0.8); }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.answer-row.shake {
+    animation: shake 0.4s ease;
+}
+
+.answer-row.correct .answer-slot {
+    border-color: #22c55e;
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+/* ===== Riddle 3: Numpad ===== */
+.numpad-display {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.num-digit {
+    width: 52px;
+    height: 62px;
+    background: var(--white);
+    border: 2px solid var(--candy-light);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-hand);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.num-digit.active {
+    border-color: var(--candy-pink);
+    color: var(--candy-dark);
+    box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.15);
+    animation: slotPop 0.3s ease;
+}
+
+.num-digit.correct {
+    border-color: #22c55e;
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.numpad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+.numpad-btn {
+    width: 100%;
+    height: 52px;
+    font-family: var(--font-clean);
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--white);
+    color: var(--text);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.numpad-btn:hover {
+    background: var(--blush);
+    transform: scale(1.05);
+}
+
+.numpad-btn:active {
+    transform: scale(0.95);
+}
+
+.numpad-clear {
+    background: #fee2e2;
+    color: var(--red);
+}
+
+.numpad-go {
+    background: linear-gradient(135deg, var(--candy-pink), var(--candy-dark));
+    color: var(--white);
+    box-shadow: 0 3px 12px rgba(201, 24, 74, 0.25);
+}
+
+/* ===== The Big Ask ===== */
+.ask-content {
+    overflow: visible;
+}
+
+.big-heart-container {
+    margin-bottom: 16px;
+}
+
+.big-heart {
+    font-size: 5rem;
+    color: var(--candy-pink);
+    display: inline-block;
+    animation: heartBeat 1.2s ease-in-out infinite;
+}
+
+.ask-title {
+    font-family: var(--font-hand);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    color: var(--candy-dark);
+    margin-bottom: 36px;
+    animation: fadeSlideUp 0.8s ease-out 0.2s both;
+}
+
+.ask-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    min-height: 80px;
+}
+
+.btn-yes {
+    font-family: var(--font-hand);
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, var(--candy-pink), var(--candy-dark));
+    color: var(--white);
+    border: none;
+    padding: 16px 48px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(201, 24, 74, 0.35);
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+
+.btn-yes:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 36px rgba(201, 24, 74, 0.45);
+}
+
+.btn-no {
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    background: #f1f5f9;
+    color: var(--text-light);
+    border: 1px solid #e2e8f0;
+    padding: 12px 32px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+    z-index: 4;
+}
+
+/* ===== Yes Celebration ===== */
+#yesScreen {
+    background: linear-gradient(135deg, #ffe0e6, #ffd6e0, #f5d5f0, #e0c3fc);
+}
+
+.yes-title {
+    font-family: var(--font-hand);
+    font-size: clamp(2.2rem, 7vw, 3.5rem);
+    color: var(--candy-dark);
+    margin-bottom: 12px;
+    animation: fadeSlideUp 0.8s ease-out 0.3s both;
+}
+
+.yes-subtitle {
+    font-family: var(--font-hand);
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    color: var(--rose);
+    margin-bottom: 20px;
+    animation: fadeSlideUp 0.8s ease-out 0.5s both;
+}
+
+.yes-message {
+    font-family: var(--font-clean);
+    font-size: 1.05rem;
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 360px;
+    margin: 0 auto 24px;
+    animation: fadeSlideUp 0.8s ease-out 0.7s both;
+}
+
+.yes-hearts {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    animation: fadeSlideUp 0.8s ease-out 0.9s both;
+}
+
+.yes-hearts span {
+    font-size: 2rem;
+    animation: heartBeat 1.4s ease-in-out infinite;
+}
+
+/* ===== Screen Transitions ===== */
+@keyframes screenEnter {
+    from { opacity: 0; transform: scale(0.95) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.screen.entering {
+    animation: screenEnter 0.5s ease-out forwards;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+    .letter-tile { width: 38px; height: 46px; font-size: 1.4rem; }
+    .answer-slot { width: 36px; height: 44px; font-size: 1.3rem; }
+    .num-digit { width: 46px; height: 56px; font-size: 1.8rem; }
+    .numpad-grid { max-width: 230px; gap: 8px; }
+    .numpad-btn { height: 46px; font-size: 1.15rem; }
+    .ask-buttons { gap: 14px; }
+    .btn-yes { font-size: 1.5rem; padding: 14px 40px; }
+    .btn-no { font-size: 1rem; padding: 10px 24px; }
+}
+

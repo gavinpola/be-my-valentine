@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="hearts-bg" id="heartsBg"></div>
+    <div class="confetti-container" id="confetti"></div>
+
+    <!-- ===== INTRO SCREEN ===== -->
+    <div class="screen active" id="introScreen">
+        <div class="screen-content">
+            <div class="intro-heart">&hearts;</div>
+            <h1 class="intro-title">Hey Nori...</h1>
+            <p class="intro-text">I have a very important question for you.<br>But first, you have to prove you know me well enough.</p>
+            <p class="intro-sub">Solve 3 little riddles to unlock it.</p>
+            <button class="btn-primary" id="startBtn">I'm ready!</button>
+            <div class="progress-dots">
+                <span class="dot" id="dot1"></span>
+                <span class="dot" id="dot2"></span>
+                <span class="dot" id="dot3"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== RIDDLE 1: CRACK THE CODE ===== -->
+    <div class="screen" id="riddle1Screen">
+        <div class="screen-content">
+            <div class="riddle-number">Riddle 1 of 3</div>
+            <div class="lock-icon" id="lockIcon">&#128274;</div>
+            <h2 class="riddle-title">Crack the Code</h2>
+            <p class="riddle-prompt">Our dads share a first name.<br>Type it to unlock the next clue.</p>
+            <div class="input-group">
+                <input type="text" id="riddle1Input" class="riddle-input" placeholder="Type the name..." autocomplete="off" autocapitalize="off" spellcheck="false">
+                <button class="btn-submit" id="riddle1Submit">Unlock</button>
+            </div>
+            <p class="riddle-hint" id="riddle1Hint"></p>
+            <div class="progress-dots">
+                <span class="dot filled" id="r1dot1"></span>
+                <span class="dot" id="r1dot2"></span>
+                <span class="dot" id="r1dot3"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== RIDDLE 2: UNSCRAMBLE ===== -->
+    <div class="screen" id="riddle2Screen">
+        <div class="screen-content">
+            <div class="riddle-number">Riddle 2 of 3</div>
+            <h2 class="riddle-title">Unscramble the Nickname</h2>
+            <p class="riddle-prompt">Rearrange these letters to reveal<br>one of your many nicknames:</p>
+            <div class="tiles-container" id="tilesContainer">
+                <div class="tiles-row" id="scrambledTiles"></div>
+                <div class="answer-row" id="answerSlots">
+                    <div class="answer-slot" data-idx="0"></div>
+                    <div class="answer-slot" data-idx="1"></div>
+                    <div class="answer-slot" data-idx="2"></div>
+                    <div class="answer-slot" data-idx="3"></div>
+                    <div class="answer-slot" data-idx="4"></div>
+                    <div class="answer-slot" data-idx="5"></div>
+                    <div class="answer-slot" data-idx="6"></div>
+                </div>
+            </div>
+            <button class="btn-clear" id="clearTiles">Clear</button>
+            <p class="riddle-hint" id="riddle2Hint"></p>
+            <div class="progress-dots">
+                <span class="dot filled"></span>
+                <span class="dot filled" id="r2dot2"></span>
+                <span class="dot" id="r2dot3"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== RIDDLE 3: THE MAGIC NUMBER ===== -->
+    <div class="screen" id="riddle3Screen">
+        <div class="screen-content">
+            <div class="riddle-number">Riddle 3 of 3</div>
+            <h2 class="riddle-title">The Magic Number</h2>
+            <p class="riddle-prompt">What 4-digit number were we<br>both destined to score on the SAT?</p>
+            <div class="numpad-display" id="numDisplay">
+                <span class="num-digit" id="d1">_</span>
+                <span class="num-digit" id="d2">_</span>
+                <span class="num-digit" id="d3">_</span>
+                <span class="num-digit" id="d4">_</span>
+            </div>
+            <div class="numpad-grid">
+                <button class="numpad-btn" data-num="1">1</button>
+                <button class="numpad-btn" data-num="2">2</button>
+                <button class="numpad-btn" data-num="3">3</button>
+                <button class="numpad-btn" data-num="4">4</button>
+                <button class="numpad-btn" data-num="5">5</button>
+                <button class="numpad-btn" data-num="6">6</button>
+                <button class="numpad-btn" data-num="7">7</button>
+                <button class="numpad-btn" data-num="8">8</button>
+                <button class="numpad-btn" data-num="9">9</button>
+                <button class="numpad-btn numpad-clear" data-num="clear">&#9003;</button>
+                <button class="numpad-btn" data-num="0">0</button>
+                <button class="numpad-btn numpad-go" data-num="go">&#10003;</button>
+            </div>
+            <p class="riddle-hint" id="riddle3Hint"></p>
+            <div class="progress-dots">
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot filled" id="r3dot3"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== THE BIG ASK ===== -->
+    <div class="screen" id="askScreen">
+        <div class="screen-content ask-content">
+            <div class="big-heart-container">
+                <span class="big-heart">&hearts;</span>
+            </div>
+            <h1 class="ask-title">Will you be my Valentine?</h1>
+            <div class="ask-buttons" id="askButtons">
+                <button class="btn-yes" id="btnYes">Yes!</button>
+                <button class="btn-no" id="btnNo">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== YES CELEBRATION ===== -->
+    <div class="screen" id="yesScreen">
+        <div class="screen-content">
+            <h1 class="yes-title">I already knew the answer &hearts;</h1>
+            <p class="yes-subtitle">Happy Valentine's Day, Nori.</p>
+            <p class="yes-message">
+                <!-- GAVIN: Optionally add a personal message here -->
+                Can't wait to celebrate with my favorite person.
+            </p>
+            <div class="yes-hearts" id="yesHearts"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
